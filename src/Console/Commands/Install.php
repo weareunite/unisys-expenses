@@ -2,37 +2,13 @@
 
 namespace Unite\Expenses\Console\Commands;
 
-use Illuminate\Console\Command;
+use Unite\UnisysApi\Console\InstallModuleCommand;
 
-class Install extends Command
+class Install extends InstallModuleCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'unisys-api:expenses:install';
+    protected $moduleName = 'expenses';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Install Expenses module to Unisys API';
-
-    /*
-     * Execute the console command.
-     */
-    public function handle()
-    {
-        $this->info('Installing ...');
-
-        $this->install();
-
-        $this->info('UniSys module was installed');
-    }
-
-    private function install()
+    protected function install()
     {
         $this->call('vendor:publish', [
             '--provider' => 'Unite\\Expenses\\ExpensesServiceProvider'
