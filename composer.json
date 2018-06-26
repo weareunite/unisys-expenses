@@ -43,7 +43,10 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "post-package-install": [
+      "@php artisan unisys-api:install:expenses"
+    ]
   },
   "config": {
     "sort-packages": true
