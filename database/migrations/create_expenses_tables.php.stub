@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
+
+class CreateExpensesTables extends Migration
+{
+    public function up()
+    {
+        Schema::create('expenses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->morphs('subject');
+            $table->string('type');
+            $table->string('number');
+            $table->integer('supplier_id')->unsigned();
+            $table->foreign('supplier_id')->references('id')->on('contacts');
+            $table->integer('purchaser_id')->unsigned();
+            $table->foreign('purchaser_id')->references('id')->on('contacts');
+            $table->date('date_issue')->nullable();
+            $table->date('date_supply')->nullable();
+            $table->date('date_due')->nullable();
+            $table->integer('variable_symbol')->unsigned()->nullable();
+            $table->integer('specific_symbol')->unsigned()->nullable();
+            $table->string('description')->nullable();
+            $table->json('custom_properties')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('expense_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('expense_id')->unsigned();
+            $table->foreign('expense_id')->references('id')->on('expenses');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->smallInteger('qty')->unsigned();
+            $table->string('um')->nullable();
+            $table->tinyInteger('vat')->unsigned()->nullable();
+            $table->decimal('price', 12, 2);
+            $table->decimal('price_without_vat', 12, 2);
+        });
+    }
+
+    public function down()
+    {
+        Schema::drop('expenses');
+        Schema::drop('expense_items');
+    }
+}
