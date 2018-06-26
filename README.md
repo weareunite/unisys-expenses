@@ -17,7 +17,7 @@ The package will automatically register itself.
 
 You can install it with:
 ```bash
-php artisan unisys-api:expenses:install
+php artisan unisys-api:install:expenses
 ```
 
 ## License
