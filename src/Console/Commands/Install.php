@@ -10,6 +10,10 @@ class Install extends InstallModuleCommand
 
     protected function install()
     {
+        $this->call('unisys-api:install:contacts');
+
+        $this->call('unisys-api:install:transactions');
+
         $this->call('vendor:publish', [
             '--provider' => 'Unite\\Expenses\\ExpensesServiceProvider'
         ]);

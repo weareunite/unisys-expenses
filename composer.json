@@ -20,9 +20,9 @@
   ],
   "require": {
     "php": "^7.1",
-    "weareunite/unisys-api": "^1.1",
-    "weareunite/unisys-transactions": "^1.0",
-    "weareunite/unisys-contacts": "^1.0",
+    "weareunite/unisys-api": "^0.9",
+    "weareunite/unisys-transactions": "^0.9",
+    "weareunite/unisys-contacts": "^0.9",
     "illuminate/container": "~5.5.0|~5.6.0",
     "illuminate/contracts": "~5.5.0|~5.6.0",
     "illuminate/database": "~5.5.0|~5.6.0",
