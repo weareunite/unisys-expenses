@@ -19,6 +19,8 @@ Route::group([
 {
     Route::group(['as' => 'expense.', 'prefix' => 'expense'], function ()
     {
+        Route::get('/',                             ['as' => 'list',                    'uses' => 'ExpenseController@list']);
+        Route::get('{id}',                          ['as' => 'show',                    'uses' => 'ExpenseController@show']);
         Route::put('{id}',                          ['as' => 'update',                  'uses' => 'ExpenseController@update']);
         Route::delete('{id}',                       ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
     });

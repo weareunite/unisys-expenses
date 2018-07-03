@@ -3,7 +3,6 @@
 namespace Unite\Expenses\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Unite\Transactions\Models\Invoice;
 
 class UpdateRequest extends FormRequest
 {
@@ -24,18 +23,17 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $allRules = [
-            'type'                  => 'in:'.implode(',', Invoice::getTypes()),
-            'transaction_source_id' => 'integer|exists:transaction_sources,id',
-            'amount'                => 'numeric',
-            'variable_symbol'       => 'string|max:250|nullable',
-            'specific_symbol'       => 'string|max:250|nullable',
-            'description'           => 'string|max:250|nullable',
-            'paid_at'               => 'date_format:"Y-m-d H:i"',
+        return [
+            'number'                => 'string|max:50',
+            'supplier_id'           => 'integer|exists:contacts,id',
+            'purchaser_id'          => 'integer|exists:contacts,id',
+            'date_issue'            => 'nullable|date_format:Y-m-d',
+            'date_supply'           => 'nullable|date_format:Y-m-d',
+            'date_due'              => 'nullable|date_format:Y-m-d',
+            'variable_symbol'       => 'nullable|numeric|max:10',
+            'specific_symbol'       => 'nullable|numeric|max:10',
+            'description'           => 'nullable|string|max:250',
+            'custom_properties'     => 'nullable|json',
         ];
-
-        $rules = isset($allRules[$this->name]) ? ['value' => $allRules[$this->name] ] : [];
-
-        return $rules;
     }
 }

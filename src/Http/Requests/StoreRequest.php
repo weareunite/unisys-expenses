@@ -24,18 +24,16 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'string|max:50',
-            'supplier_id' => 'integer|exists:contacts,id',
-            'purchaser_id' => 'integer|exists:contacts,id',
-            'date_issue' => 'date_format:Y-m-d',
-            'date_supply' => 'date_format:Y-m-d',
-            'date_due' => 'date_format:Y-m-d',
-            'variable_symbol'       => 'numeric|max:10|nullable',
-            'specific_symbol'       => 'numeric|max:10|nullable',
-            'description'           => 'string|max:250|nullable',
-            'custom_properties' => 'json|nullable',
+            'number'                => 'required|string|max:50',
+            'supplier_id'           => 'required|integer|exists:contacts,id',
+            'purchaser_id'          => 'required|integer|exists:contacts,id',
+            'date_issue'            => 'nullable|date_format:Y-m-d',
+            'date_supply'           => 'nullable|date_format:Y-m-d',
+            'date_due'              => 'nullable|date_format:Y-m-d',
+            'variable_symbol'       => 'nullable|numeric|max:10',
+            'specific_symbol'       => 'nullable|numeric|max:10',
+            'description'           => 'nullable|string|max:250',
+            'custom_properties'     => 'nullable|json',
         ];
-
-
     }
 }

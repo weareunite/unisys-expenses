@@ -2,12 +2,15 @@
 
 namespace Unite\Expenses\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Expenses\ExpenseRepository;
+use Unite\Expenses\Http\Resources\ExpenseResource;
 use Unite\UniSysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
+use Unite\UnisysApi\Http\Requests\QueryRequest;
 
 /**
- * @resource Note
+ * @resource Expenses
  *
  * Expenses handler
  */
@@ -21,10 +24,38 @@ class ExpenseController extends Controller
     }
 
     /**
+     * List
+     *
+     * @param QueryRequest $request
+     * @return AnonymousResourceCollection|ExpenseResource[]
+     */
+    public function list(QueryRequest $request)
+    {
+        $object = $this->repository->filterByRequest($request);
+
+        return ExpenseResource::collection($object);
+    }
+
+    /**
+     * Show
+     *
+     * @param $id
+     * @return ExpenseResource
+     */
+    public function show($id)
+    {
+        if(!$object = $this->repository->find($id)) {
+            abort(404);
+        }
+
+        return new ExpenseResource($object);
+    }
+
+    /**
      * Update
      *
      * @param $id
-     * @param \Unite\Expenses\Http\Requests\UpdateRequest $request
+     * @param UpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update($id, UpdateRequest $request)
