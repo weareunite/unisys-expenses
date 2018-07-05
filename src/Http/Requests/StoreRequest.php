@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'name'                  => 'nullable|string|max:50',
             'number'                => 'required|string|max:50',
             'supplier_id'           => 'required|integer|exists:contacts,id',
             'purchaser_id'          => 'required|integer|exists:contacts,id',

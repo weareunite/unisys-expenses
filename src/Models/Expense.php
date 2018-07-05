@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Unite\Tags\HasTags;
 use Unite\Transactions\Traits\HasTransactions;
 use Unite\Contacts\Models\Contact;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
@@ -18,11 +19,12 @@ class Expense extends Model implements HasMedia, HasCustomProperty
     use HasTransactions;
     use HasMediaTrait;
     use HasCustomPropertyTrait;
+    use HasTags;
 
     protected $table = 'expenses';
 
     protected $fillable = [
-        'type', 'number', 'supplier_id', 'purchaser_id', 'date_issue', 'date_supply', 'date_due',
+        'type', 'name', 'number', 'supplier_id', 'purchaser_id', 'date_issue', 'date_supply', 'date_due',
         'variable_symbol', 'specific_symbol', 'description', 'custom_properties'
     ];
 

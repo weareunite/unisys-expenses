@@ -11,6 +11,7 @@ class CreateExpensesTables extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('subject');
+            $table->string('name')->nullable();
             $table->string('type');
             $table->string('number');
             $table->integer('supplier_id')->unsigned();

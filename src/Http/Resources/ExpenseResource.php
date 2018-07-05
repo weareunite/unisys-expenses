@@ -4,6 +4,7 @@ namespace Unite\Expenses\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 use Unite\Contacts\Http\Resources\ContactResource;
+use Unite\Tags\Http\Resources\TagResource;
 
 class ExpenseResource extends Resource
 {
@@ -19,6 +20,7 @@ class ExpenseResource extends Resource
         return [
             'id'                => $this->id,
             'type'              => $this->type,
+            'name'              => $this->name,
             'number'            => $this->number,
             'supplier'          => new ContactResource($this->supplier),
             'purchaser'         => new ContactResource($this->purchaser),
@@ -29,7 +31,8 @@ class ExpenseResource extends Resource
             'variable_symbol'   => $this->variable_symbol,
             'specific_symbol'   => $this->specific_symbol,
             'description'       => $this->description,
-            'items'             => ItemResource::collection($this->items)
+            'items'             => ItemResource::collection($this->items),
+            'tags'              => TagResource::collection($this->tags),
         ];
     }
 }

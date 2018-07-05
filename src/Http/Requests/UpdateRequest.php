@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'name'                  => 'nullable|string|max:50',
             'number'                => 'string|max:50',
             'supplier_id'           => 'integer|exists:contacts,id',
             'purchaser_id'          => 'integer|exists:contacts,id',
