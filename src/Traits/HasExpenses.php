@@ -2,6 +2,7 @@
 
 namespace Unite\Expenses\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Unite\Expenses\Models\Expense;
 
@@ -14,24 +15,23 @@ trait HasExpenses
 
     /**
      * @param array $data
-     * @return \Unite\Expenses\Models\Expense
      */
-    public function addExpense(array $data = [])
+    public function addExpense(array $data = []): Model
     {
         return $this->expenses()->create($data);
     }
 
-    public function removeExpense($id)
+    public function removeExpense(int $id)
     {
         $this->expenses()->where('id', $id)->delete();
     }
 
-    public function existExpenses()
+    public function existExpenses(): bool
     {
         return $this->expenses()->exists();
     }
 
-    public function ExpensesCount()
+    public function expensesCount(): int
     {
         return $this->expenses()->count();
     }

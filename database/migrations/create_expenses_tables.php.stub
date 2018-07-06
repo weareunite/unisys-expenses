@@ -11,12 +11,12 @@ class CreateExpensesTables extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('subject');
-            $table->string('name')->nullable();
-            $table->string('type');
-            $table->string('number');
-            $table->decimal('total_price', 12, 2)->unsigned()->nullable();
-            $table->decimal('total_price_without_vat', 12, 2)->unsigned()->nullable();
-            $table->integer('supplier_id')->unsigned();
+            $table->string('name');
+            $table->string('type')->nullable();
+            $table->string('number')->nullable();
+            $table->decimal('amount', 12, 2)->unsigned()->default(0);
+            $table->decimal('amount_without_vat', 12, 2)->unsigned()->nullable();
+            $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('contacts');
             $table->integer('purchaser_id')->unsigned();
             $table->foreign('purchaser_id')->references('id')->on('contacts');
@@ -29,24 +29,10 @@ class CreateExpensesTables extends Migration
             $table->json('custom_properties')->nullable();
             $table->timestamps();
         });
-
-        Schema::create('expense_items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('expense_id')->unsigned();
-            $table->foreign('expense_id')->references('id')->on('expenses');
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->smallInteger('qty')->unsigned();
-            $table->string('um')->nullable();
-            $table->tinyInteger('vat')->unsigned()->nullable();
-            $table->decimal('price', 12, 2);
-            $table->decimal('price_without_vat', 12, 2);
-        });
     }
 
     public function down()
     {
         Schema::drop('expenses');
-        Schema::drop('expense_items');
     }
 }

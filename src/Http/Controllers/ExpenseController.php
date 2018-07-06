@@ -5,6 +5,7 @@ namespace Unite\Expenses\Http\Controllers;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Expenses\ExpenseRepository;
 use Unite\Expenses\Http\Resources\ExpenseResource;
+use Unite\Expenses\Models\Expense;
 use Unite\UniSysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
 use Unite\UnisysApi\Http\Requests\QueryRequest;
@@ -27,6 +28,7 @@ class ExpenseController extends Controller
      * List
      *
      * @param QueryRequest $request
+     *
      * @return AnonymousResourceCollection|ExpenseResource[]
      */
     public function list(QueryRequest $request)
@@ -40,33 +42,27 @@ class ExpenseController extends Controller
      * Show
      *
      * @param $id
+     *
      * @return ExpenseResource
      */
-    public function show($id)
+    public function show(Expense $model)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
+        $model->load('supplier', 'purchaser', 'tags');
 
-        return new ExpenseResource($object);
+        return new ExpenseResource($model);
     }
 
     /**
      * Update
      *
-     * @param $id
+     * @param Expense $model
      * @param UpdateRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, UpdateRequest $request)
+    public function update(Expense $model, UpdateRequest $request)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        $data = $request->all();
-
-        $object->update($data);
+        $model->update( $request->all() );
 
         return $this->successJsonResponse();
     }
@@ -74,12 +70,13 @@ class ExpenseController extends Controller
     /**
      * Delete
      *
-     * @param $id
+     * @param Expense $model
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id)
+    public function delete(Expense $model)
     {
-        $this->repository->delete($id);
+        $model->delete();
 
         return $this->successJsonResponse();
     }

@@ -2,7 +2,6 @@
 
 namespace Unite\Expenses;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Unite\Expenses\Console\Commands\Install;
 
@@ -26,8 +25,6 @@ class ExpensesServiceProvider extends ServiceProvider
                 __DIR__.'/../database/migrations/create_expenses_tables.php.stub' => database_path("/migrations/{$timestamp}_create_expenses_tables.php"),
             ], 'migrations');
         }
-
-        Event::subscribe(ItemSubscriber::class);
     }
 
     /**

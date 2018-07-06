@@ -25,14 +25,27 @@ class Expense extends Model implements HasMedia, HasCustomProperty
 
     protected $fillable = [
         'type', 'name', 'number', 'supplier_id', 'purchaser_id', 'date_issue', 'date_supply', 'date_due',
-        'variable_symbol', 'specific_symbol', 'description', 'custom_properties'
+        'variable_symbol', 'specific_symbol', 'description', 'custom_properties',
+        'amount', 'amount_without_vat',
     ];
 
     protected $casts = [
         'custom_properties'         => 'array',
-        'total_price'               => 'float',
-        'total_price_without_vat'   => 'float',
     ];
+
+    const TYPE_DEFAULT = 'default';
+
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_DEFAULT,
+        ];
+    }
+
+    public static function getDefaultType(): string
+    {
+        return self::TYPE_DEFAULT;
+    }
 
     public function subject(): MorphTo
     {
@@ -47,24 +60,5 @@ class Expense extends Model implements HasMedia, HasCustomProperty
     public function purchaser()
     {
         return $this->belongsTo(Contact::class);
-    }
-
-    public function items()
-    {
-        return $this->hasMany(Item::class);
-    }
-
-    public function calculateTotalPrice(): float
-    {
-        return $this->items->sum(function (Item $item) {
-            return $item->sumTotalPrice();
-        });
-    }
-
-    public function calculateTotalPriceWithoutVat(): float
-    {
-        return $this->items->sum(function (Item $item) {
-            return $item->sumTotalPriceWithoutVat();
-        });
     }
 }

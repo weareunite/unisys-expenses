@@ -18,21 +18,21 @@ class ExpenseResource extends Resource
     {
         /** @var \Unite\Expenses\Models\Expense $this->resource */
         return [
-            'id'                => $this->id,
-            'type'              => $this->type,
-            'name'              => $this->name,
-            'number'            => $this->number,
-            'supplier'          => new ContactResource($this->supplier),
-            'purchaser'         => new ContactResource($this->purchaser),
-            'date_issue'        => (string)$this->date_issue,
-            'date_supply'       => (string)$this->date_supply,
-            'date_due'          => (string)$this->date_due,
-            'amount_to_pay'     => $this->amount_to_pay,
-            'variable_symbol'   => $this->variable_symbol,
-            'specific_symbol'   => $this->specific_symbol,
-            'description'       => $this->description,
-            'items'             => ItemResource::collection($this->items),
-            'tags'              => TagResource::collection($this->tags),
+            'id'                    => $this->id,
+            'type'                  => $this->type,
+            'name'                  => $this->name,
+            'number'                => $this->number,
+            'amount'                => $this->amount,
+            'amount_without_vat'    => $this->amount_without_vat,
+            'supplier'              => new ContactResource($this->supplier),
+            'purchaser'             => new ContactResource($this->purchaser),
+            'date_issue'            => (string)$this->date_issue,
+            'date_supply'           => (string)$this->date_supply,
+            'date_due'              => (string)$this->date_due,
+            'variable_symbol'       => $this->variable_symbol,
+            'specific_symbol'       => $this->specific_symbol,
+            'description'           => $this->description,
+            'tags'                  => TagResource::collection($this->tags),
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace Unite\Expenses\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Unite\Expenses\Models\Expense;
+use Unite\UnisysApi\Rules\PriceAmount;
 
 class UpdateRequest extends FormRequest
 {
@@ -24,9 +26,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'nullable|string|max:50',
-            'number'                => 'string|max:50',
-            'supplier_id'           => 'integer|exists:contacts,id',
+            'type'                  => 'nullable|in:'.implode(',', Expense::getTypes()),
+            'name'                  => 'string|max:50',
+            'amount'                => [new PriceAmount],
+            'amount_without_vat'    => ['nullable', new PriceAmount],
+            'number'                => 'nullable|string|max:50',
+            'supplier_id'           => 'nullable|integer|exists:contacts,id',
             'purchaser_id'          => 'integer|exists:contacts,id',
             'date_issue'            => 'nullable|date_format:Y-m-d',
             'date_supply'           => 'nullable|date_format:Y-m-d',
