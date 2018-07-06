@@ -29,7 +29,9 @@ class Expense extends Model implements HasMedia, HasCustomProperty
     ];
 
     protected $casts = [
-        'custom_properties' => 'array',
+        'custom_properties'         => 'array',
+        'total_price'               => 'float',
+        'total_price_without_vat'   => 'float',
     ];
 
     public function subject(): MorphTo
@@ -50,5 +52,19 @@ class Expense extends Model implements HasMedia, HasCustomProperty
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function calculateTotalPrice(): float
+    {
+        return $this->items->sum(function (Item $item) {
+            return $item->sumTotalPrice();
+        });
+    }
+
+    public function calculateTotalPriceWithoutVat(): float
+    {
+        return $this->items->sum(function (Item $item) {
+            return $item->sumTotalPriceWithoutVat();
+        });
     }
 }
