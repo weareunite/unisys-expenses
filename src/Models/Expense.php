@@ -8,12 +8,13 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Unite\Tags\HasTags;
+use Unite\Tags\HasTagsInterface;
 use Unite\Transactions\Traits\HasTransactions;
 use Unite\Contacts\Models\Contact;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
 
-class Expense extends Model implements HasMedia, HasCustomProperty
+class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInterface
 {
     use LogsActivity;
     use HasTransactions;
