@@ -24,8 +24,8 @@ Route::group([
         Route::put('{model}',                       ['as' => 'update',                  'uses' => 'ExpenseController@update']);
         Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
 
-        Route::put('{model}/attachTags',            ['as' => 'attachTags',              'uses' => 'ExpenseController@attachTags']);
+        Route::put('{id}/attachTags',               ['as' => 'attachTags',              'uses' => 'ExpenseController@attachTags']);
         Route::put('massAttachTags',                ['as' => 'massAttachTags',          'uses' => 'ExpenseController@massAttachTags']);
-        Route::put('{model}/detachTags',            ['as' => 'detachTags',              'uses' => 'ExpenseController@detachTags']);
+        Route::put('{id}/detachTags',               ['as' => 'detachTags',              'uses' => 'ExpenseController@detachTags']);
     });
 });
