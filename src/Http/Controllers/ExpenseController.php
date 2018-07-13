@@ -9,7 +9,7 @@ use Unite\Expenses\Models\Expense;
 use Unite\Tags\Http\Requests\AttachRequest;
 use Unite\Tags\Http\Requests\DetachRequest;
 use Unite\Tags\Http\Requests\MassAttachRequest;
-use Unite\UniSysApi\Http\Controllers\Controller;
+use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
 use Unite\UnisysApi\Http\Requests\QueryRequest;
 
