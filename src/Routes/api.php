@@ -27,6 +27,5 @@ Route::group([
         Route::put('{model}/attachTags',            ['as' => 'attachTags',              'uses' => 'ExpenseController@attachTags']);
         Route::put('massAttachTags',                ['as' => 'massAttachTags',          'uses' => 'ExpenseController@massAttachTags']);
         Route::put('{model}/detachTags',            ['as' => 'detachTags',              'uses' => 'ExpenseController@detachTags']);
-
     });
 });
