@@ -10,7 +10,6 @@ class CreateExpensesTables extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('subject');
             $table->string('name');
             $table->string('type')->nullable();
             $table->string('number')->nullable();

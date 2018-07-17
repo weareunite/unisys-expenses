@@ -21,8 +21,11 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'ExpenseController@list']);
         Route::get('{model}',                       ['as' => 'show',                    'uses' => 'ExpenseController@show']);
+        Route::post('/',                            ['as' => 'create',                  'uses' => 'ExpenseController@create']);
         Route::put('{model}',                       ['as' => 'update',                  'uses' => 'ExpenseController@update']);
         Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
+
+        Route::get('{id}/transactions',             ['as' => 'transactions',            'uses' => 'ExpenseController@allTransactions']);
 
         Route::put('{id}/attachTags',               ['as' => 'attachTags',              'uses' => 'ExpenseController@attachTags']);
         Route::put('massAttachTags',                ['as' => 'massAttachTags',          'uses' => 'ExpenseController@massAttachTags']);

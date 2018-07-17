@@ -8,23 +8,7 @@ use Unite\Expenses\Models\Expense;
 
 trait HasExpenses
 {
-    public function expenses(): MorphMany
-    {
-        return $this->morphMany(Expense::class, 'subject');
-    }
 
-    /**
-     * @param array $data
-     */
-    public function addExpense(array $data = []): Model
-    {
-        return $this->expenses()->create($data);
-    }
-
-    public function removeExpense(int $id)
-    {
-        $this->expenses()->where('id', $id)->delete();
-    }
 
     public function existExpenses(): bool
     {
