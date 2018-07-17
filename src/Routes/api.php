@@ -25,6 +25,7 @@ Route::group([
         Route::put('{model}',                       ['as' => 'update',                  'uses' => 'ExpenseController@update']);
         Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
 
+        Route::post('{id}/addTransaction',          ['as' => 'addTransaction',          'uses' => 'ExpenseController@addTransaction']);
         Route::get('{id}/transactions',             ['as' => 'transactions',            'uses' => 'ExpenseController@allTransactions']);
 
         Route::put('{id}/attachTags',               ['as' => 'attachTags',              'uses' => 'ExpenseController@attachTags']);
