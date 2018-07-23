@@ -28,6 +28,8 @@ class ExpenseController extends Controller
     public function __construct(ExpenseRepository $repository)
     {
         $this->repository = $repository;
+
+        $this->setResourceClass(ExpenseResource::class);
     }
 
     /**
@@ -41,7 +43,7 @@ class ExpenseController extends Controller
     {
         $object = $this->repository->with(ExpenseResource::getRelations())->filterByRequest( $request->all() );
 
-        return ExpenseResource::collection($object);
+        return $this->resource::collection($object);
     }
 
     /**
@@ -55,7 +57,7 @@ class ExpenseController extends Controller
     {
         $model->load('supplier', 'purchaser', 'tags');
 
-        return new ExpenseResource($model);
+        return new $this->resource($model);
     }
 
     /**
@@ -69,7 +71,7 @@ class ExpenseController extends Controller
     {
         $object = $this->repository->create( $request->all() );
 
-        return new ExpenseResource($object);
+        return new $this->resource($object);
     }
 
     /**
