@@ -2,12 +2,20 @@
 
 namespace Unite\Expenses\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
 use Unite\Contacts\Http\Resources\ContactResource;
 use Unite\Tags\Http\Resources\TagResource;
+use Unite\UnisysApi\Http\Resources\Resource;
 
 class ExpenseResource extends Resource
 {
+    protected static $relations = [
+        'supplier',
+        'supplier.country',
+        'purchaser',
+        'purchaser.country',
+        'tags'
+    ];
+
     /**
      * Transform the resource into an array.
      *
