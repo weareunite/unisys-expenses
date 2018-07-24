@@ -39,7 +39,7 @@ class UpdateRequest extends FormRequest
             'variable_symbol'       => 'nullable|digits_between:0,10',
             'specific_symbol'       => 'nullable|digits_between:0,10',
             'description'           => 'nullable|string|max:250',
-            'custom_properties'     => 'nullable|json',
+            'custom_properties'     => 'nullable|string',
         ];
     }
 }

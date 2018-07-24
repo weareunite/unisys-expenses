@@ -25,7 +25,7 @@ class CreateExpensesTables extends Migration
             $table->integer('variable_symbol')->unsigned()->nullable();
             $table->integer('specific_symbol')->unsigned()->nullable();
             $table->string('description')->nullable();
-            $table->json('custom_properties')->nullable();
+            $table->json('custom_properties');
             $table->timestamps();
         });
     }

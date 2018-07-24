@@ -26,7 +26,7 @@ class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInter
 
     protected $fillable = [
         'type', 'name', 'number', 'supplier_id', 'purchaser_id', 'date_issue', 'date_supply', 'date_due',
-        'variable_symbol', 'specific_symbol', 'description', 'custom_properties',
+        'variable_symbol', 'specific_symbol', 'description', 'custom_properties' => '{}',
         'amount', 'amount_without_vat',
     ];
 
