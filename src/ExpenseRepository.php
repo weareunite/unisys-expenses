@@ -8,4 +8,12 @@ use Unite\Expenses\Models\Expense;
 class ExpenseRepository extends Repository
 {
     protected $modelClass = Expense::class;
+
+    protected $resourceRelations = [
+        'supplier',
+        'supplier.country',
+        'purchaser',
+        'purchaser.country',
+        'tags'
+    ];
 }

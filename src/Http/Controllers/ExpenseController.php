@@ -41,7 +41,10 @@ class ExpenseController extends Controller
      */
     public function list(QueryRequest $request)
     {
-        $object = $this->repository->with(ExpenseResource::getRelations())->filterByRequest( $request->all() );
+        $object = $this->repository
+            ->with( $this->repository->getResourceRelations() )
+            ->filterByRequest( $request->all() );
+
 
         return $this->resource::collection($object);
     }

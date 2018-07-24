@@ -8,14 +8,6 @@ use Unite\UnisysApi\Http\Resources\Resource;
 
 class ExpenseResource extends Resource
 {
-    protected static $relations = [
-        'supplier',
-        'supplier.country',
-        'purchaser',
-        'purchaser.country',
-        'tags'
-    ];
-
     /**
      * Transform the resource into an array.
      *
