@@ -32,6 +32,7 @@ class ExpenseResource extends Resource
             'variable_symbol'       => $this->variable_symbol,
             'specific_symbol'       => $this->specific_symbol,
             'description'           => $this->description,
+            'hasAttachments'        => $this->hasMedia(),
             'tags'                  => TagResource::collection($this->tags),
         ];
     }

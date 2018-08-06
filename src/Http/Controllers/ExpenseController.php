@@ -11,6 +11,7 @@ use Unite\Tags\Http\Controllers\AttachDetachTags;
 use Unite\Transactions\Http\Controllers\HandleTransaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
+use Unite\UnisysApi\Http\Controllers\HandleUploads;
 use Unite\UnisysApi\Http\Requests\QueryRequest;
 
 /**
@@ -22,6 +23,7 @@ class ExpenseController extends Controller
 {
     use AttachDetachTags;
     use HandleTransaction;
+    use HandleUploads;
 
     protected $repository;
 
