@@ -54,12 +54,16 @@ class ExpenseController extends Controller
     /**
      * Show
      *
-     * @param Expense $model
+     * @param int $id
      *
      * @return ExpenseResource
      */
-    public function show(Expense $model)
+    public function show(int $id)
     {
+        if(!$model = $this->repository->find($id)) {
+            abort(404);
+        }
+
         $model->load('supplier', 'purchaser', 'tags');
 
         return new $this->resource($model);
@@ -82,13 +86,17 @@ class ExpenseController extends Controller
     /**
      * Update
      *
-     * @param Expense $model
+     * @param int $id
      * @param UpdateRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Expense $model, UpdateRequest $request)
+    public function update(int $id, UpdateRequest $request)
     {
+        if(!$model = $this->repository->find($id)) {
+            abort(404);
+        }
+
         $model->update( $request->all() );
 
         return $this->successJsonResponse();
@@ -97,12 +105,16 @@ class ExpenseController extends Controller
     /**
      * Delete
      *
-     * @param Expense $model
+     * @param int $id
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Expense $model)
+    public function delete(int $id)
     {
+        if(!$model = $this->repository->find($id)) {
+            abort(404);
+        }
+
         $model->delete();
 
         return $this->successJsonResponse();

@@ -20,10 +20,10 @@ Route::group([
     Route::group(['as' => 'expense.', 'prefix' => 'expense'], function ()
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'ExpenseController@list']);
-        Route::get('{model}',                       ['as' => 'show',                    'uses' => 'ExpenseController@show']);
+        Route::get('{id}',                          ['as' => 'show',                    'uses' => 'ExpenseController@show']);
         Route::post('/',                            ['as' => 'create',                  'uses' => 'ExpenseController@create']);
-        Route::put('{model}',                       ['as' => 'update',                  'uses' => 'ExpenseController@update']);
-        Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
+        Route::put('{id}',                          ['as' => 'update',                  'uses' => 'ExpenseController@update']);
+        Route::delete('{id}',                       ['as' => 'delete',                  'uses' => 'ExpenseController@delete']);
 
         Route::post('{id}/addTransaction',          ['as' => 'addTransaction',          'uses' => 'ExpenseController@addTransaction']);
         Route::get('{id}/transactions',             ['as' => 'transactions',            'uses' => 'ExpenseController@allTransactions']);
