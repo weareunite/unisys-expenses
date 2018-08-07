@@ -32,7 +32,7 @@ Route::group([
         Route::put('massAttachTags',                ['as' => 'massAttachTags',          'uses' => 'ExpenseController@massAttachTags']);
         Route::put('{id}/detachTags',               ['as' => 'detachTags',              'uses' => 'ExpenseController@detachTags']);
 
-        Route::post('{id}/uploadFile',              ['as' => 'uploadFile',              'uses' => 'ExpenseController@uploadFile']);
+        Route::post('{id}/addFile',                 ['as' => 'uploadFile',              'uses' => 'ExpenseController@uploadFile']);
         Route::get('{id}/files',                    ['as' => 'getFiles',                'uses' => 'ExpenseController@getFiles']);
         Route::get('{id}/latestFile',               ['as' => 'getLatestFile',           'uses' => 'ExpenseController@getLatestFile']);
     });
