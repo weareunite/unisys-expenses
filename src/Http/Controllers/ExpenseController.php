@@ -47,7 +47,6 @@ class ExpenseController extends Controller
             ->with( $this->repository->getResourceRelations() )
             ->filterByRequest( $request->all() );
 
-
         return $this->resource::collection($object);
     }
 
