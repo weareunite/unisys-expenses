@@ -2,7 +2,6 @@
 
 namespace Unite\Expenses\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -13,8 +12,9 @@ use Unite\Transactions\Traits\HasTransactions;
 use Unite\Contacts\Models\Contact;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
+use Unite\UnisysApi\Models\ModelWithAmount;
 
-class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInterface
+class Expense extends ModelWithAmount implements HasMedia, HasCustomProperty, HasTagsInterface
 {
     use LogsActivity;
     use HasTransactions;
