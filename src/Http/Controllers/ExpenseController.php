@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Expenses\ExpenseRepository;
 use Unite\Expenses\Http\Requests\StoreRequest;
 use Unite\Expenses\Http\Resources\ExpenseResource;
-use Unite\Expenses\Models\Expense;
 use Unite\Tags\Http\Controllers\AttachDetachTags;
 use Unite\Transactions\Http\Controllers\HandleTransaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
@@ -110,11 +109,11 @@ class ExpenseController extends Controller
      */
     public function delete(int $id)
     {
-        if(!$model = $this->repository->find($id)) {
-            abort(404);
+        try {
+            $this->repository->delete($id);
+        } catch(\Exception $e) {
+            abort(409, 'Cannot delete record');
         }
-
-        $model->delete();
 
         return $this->successJsonResponse();
     }
