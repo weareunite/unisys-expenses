@@ -27,10 +27,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'type'                  => 'nullable|in:'.implode(',', Expense::getTypes()),
-            'name'                  => 'string|max:50',
+            'name'                  => 'string|max:100',
             'amount'                => [new PriceAmount],
             'amount_without_vat'    => ['nullable', new PriceAmount],
-            'number'                => 'nullable|string|max:50',
+            'number'                => 'nullable|string|max:100',
             'supplier_id'           => 'nullable|integer|exists:contacts,id',
             'purchaser_id'          => 'integer|exists:contacts,id',
             'date_issue'            => 'nullable|date_format:Y-m-d',
