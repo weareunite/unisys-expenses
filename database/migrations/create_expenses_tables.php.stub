@@ -22,9 +22,9 @@ class CreateExpensesTables extends Migration
             $table->date('date_issue')->nullable();
             $table->date('date_supply')->nullable();
             $table->date('date_due')->nullable();
-            $table->integer('variable_symbol')->unsigned()->nullable();
-            $table->integer('specific_symbol')->unsigned()->nullable();
-            $table->string('description')->nullable();
+            $table->bigInteger('variable_symbol')->unsigned()->nullable();
+            $table->bigInteger('specific_symbol')->unsigned()->nullable();
+            $table->text('description')->nullable();
             $table->json('custom_properties')->nullable();
             $table->timestamps();
         });

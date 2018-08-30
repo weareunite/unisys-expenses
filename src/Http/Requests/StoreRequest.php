@@ -38,7 +38,7 @@ class StoreRequest extends FormRequest
             'date_due'              => 'nullable|date_format:Y-m-d',
             'variable_symbol'       => 'nullable|digits_between:0,10',
             'specific_symbol'       => 'nullable|digits_between:0,10',
-            'description'           => 'nullable|string|max:250',
+            'description'           => 'nullable|string|max:1000',
             'custom_properties'     => 'nullable|array',
         ];
     }
