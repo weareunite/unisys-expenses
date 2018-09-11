@@ -2,14 +2,8 @@
 
 namespace Unite\Expenses\Traits;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Unite\Expenses\Models\Expense;
-
 trait HasExpenses
 {
-
-
     public function existExpenses(): bool
     {
         return $this->expenses()->exists();

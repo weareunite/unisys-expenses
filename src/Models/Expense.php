@@ -34,6 +34,14 @@ class Expense extends ModelWithAmount implements HasMedia, HasCustomProperty, Ha
         'custom_properties'         => 'array',
     ];
 
+    protected $resourceEagerLoads = [
+        'supplier',
+        'supplier.country',
+        'purchaser',
+        'purchaser.country',
+        'tags'
+    ];
+
     const TYPE_DEFAULT = 'default';
 
     public static function getTypes(): array
