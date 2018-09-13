@@ -2,6 +2,7 @@
 
 namespace Unite\Expenses\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Expenses\ExpenseRepository;
 use Unite\Expenses\Http\Requests\StoreRequest;
@@ -11,6 +12,7 @@ use Unite\Transactions\Http\Controllers\HandleTransaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
 use Unite\UnisysApi\Http\Controllers\HandleUploads;
+use Unite\UnisysApi\Http\Controllers\HasExport;
 use Unite\UnisysApi\QueryBuilder\QueryBuilder;
 use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
@@ -24,6 +26,7 @@ class ExpenseController extends Controller
     use AttachDetachTags;
     use HandleTransaction;
     use HandleUploads;
+    use HasExport;
 
     protected $repository;
 
@@ -43,7 +46,32 @@ class ExpenseController extends Controller
      */
     public function list(QueryBuilderRequest $request)
     {
+        $virtualFields = [
+            'expenses.draw_state' => function (Builder &$query, $value, $operator) {
+                if($value === 'drawn') {
+                    $sql = 'CASE WHEN expenses.amount = expenses.drawn THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'undrawn') {
+                    $sql = 'CASE WHEN expenses.amount = 0 THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'overdrawn') {
+                    $sql = 'CASE WHEN expenses.amount < expenses.drawn THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'partially-drawn') {
+                    $sql = 'CASE WHEN expenses.amount > expenses.drawn THEN TRUE ELSE FALSE END';
+                } else {
+                    $sql = 'CASE WHEN expenses.amount = 0 THEN TRUE ELSE FALSE END';
+                }
+
+                if($operator === 'and') {
+                    return $query->where(\DB::raw($sql));
+                } elseif ($operator === 'or') {
+                    return $query->orWhere(\DB::raw($sql));
+                }
+
+                return $query->where(\DB::raw($sql));
+            }
+        ];
+
         $object = QueryBuilder::for($this->repository, $request)
+            ->setVirtualFields($virtualFields)
             ->paginate();
 
         return $this->resource::collection($object);
