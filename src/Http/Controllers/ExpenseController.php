@@ -47,26 +47,35 @@ class ExpenseController extends Controller
     public function list(QueryBuilderRequest $request)
     {
         $virtualFields = [
-            'expenses.draw_state' => function (Builder &$query, $value, $operator) {
+            'expenses.draw_state' => function (Builder &$query, $value) {
                 if($value === 'drawn') {
                     $sql = 'CASE WHEN expenses.amount = expenses.drawn THEN TRUE ELSE FALSE END';
                 } elseif ($value === 'undrawn') {
-                    $sql = 'CASE WHEN expenses.amount = 0 THEN TRUE ELSE FALSE END';
+                    $sql = 'CASE WHEN expenses.drawn = 0 THEN TRUE ELSE FALSE END';
                 } elseif ($value === 'overdrawn') {
                     $sql = 'CASE WHEN expenses.amount < expenses.drawn THEN TRUE ELSE FALSE END';
                 } elseif ($value === 'partially-drawn') {
-                    $sql = 'CASE WHEN expenses.amount > expenses.drawn THEN TRUE ELSE FALSE END';
+                    $sql = 'CASE WHEN expenses.amount > expenses.drawn AND expenses.drawn > 0 THEN TRUE ELSE FALSE END';
                 } else {
-                    $sql = 'CASE WHEN expenses.amount = 0 THEN TRUE ELSE FALSE END';
+                    $sql = 'CASE WHEN expenses.drawn = 0 THEN TRUE ELSE FALSE END';
                 }
 
-                if($operator === 'and') {
-                    return $query->where(\DB::raw($sql));
-                } elseif ($operator === 'or') {
-                    return $query->orWhere(\DB::raw($sql));
+                return $query->orWhereRaw($sql);
+            },
+            'expenses.transaction_state' => function (Builder &$query, $value) {
+                if($value === 'paid') {
+                    $sql = 'CASE WHEN expenses.amount = expenses.paid THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'undpaid') {
+                    $sql = 'CASE WHEN expenses.paid = 0 THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'overpaid') {
+                    $sql = 'CASE WHEN expenses.amount < expenses.paid THEN TRUE ELSE FALSE END';
+                } elseif ($value === 'partially-paid') {
+                    $sql = 'CASE WHEN expenses.amount > expenses.paid AND expenses.paid > 0 THEN TRUE ELSE FALSE END';
+                } else {
+                    $sql = 'CASE WHEN expenses.paid = 0 THEN TRUE ELSE FALSE END';
                 }
 
-                return $query->where(\DB::raw($sql));
+                return $query->orWhereRaw($sql);
             }
         ];
 

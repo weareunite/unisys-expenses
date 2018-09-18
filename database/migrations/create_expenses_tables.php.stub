@@ -26,6 +26,7 @@ class CreateExpensesTables extends Migration
             $table->bigInteger('specific_symbol')->unsigned()->nullable();
             $table->text('description')->nullable();
             $table->json('custom_properties')->nullable();
+            $table->boolean('hasAttachments')->unsigned()->default(0);
             $table->timestamps();
         });
     }
