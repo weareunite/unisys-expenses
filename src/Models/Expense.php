@@ -39,7 +39,8 @@ class Expense extends ModelWithAmount implements HasMedia, HasCustomProperty, Ha
         'supplier.country',
         'purchaser',
         'purchaser.country',
-        'tags'
+        'tags',
+        'media',
     ];
 
     const TYPE_DEFAULT = 'default';
