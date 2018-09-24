@@ -86,6 +86,8 @@ class ExpenseController extends Controller
     {
         $object = $this->repository->create( $request->all() );
 
+        \Cache::tags('response')->flush();
+
         return $this->response->resource($object);
     }
 
@@ -105,6 +107,8 @@ class ExpenseController extends Controller
 
         $model->update( $request->all() );
 
+        \Cache::tags('response')->flush();
+
         return $this->successJsonResponse();
     }
 
@@ -122,6 +126,8 @@ class ExpenseController extends Controller
         } catch(\Exception $e) {
             abort(409, 'Cannot delete record');
         }
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }
