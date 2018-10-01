@@ -3,7 +3,6 @@
 namespace Unite\Expenses;
 
 use Illuminate\Support\ServiceProvider;
-use Route;
 use Unite\Expenses\Console\Commands\Install;
 
 class ExpensesServiceProvider extends ServiceProvider
@@ -13,10 +12,6 @@ class ExpensesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::patterns([
-            'id'    => '^\d+$',
-            'model' => '^\d+$',
-        ]);
         $this->commands([
             Install::class,
         ]);
