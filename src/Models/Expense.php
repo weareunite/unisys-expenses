@@ -12,9 +12,9 @@ use Unite\Transactions\Traits\HasTransactions;
 use Unite\Contacts\Models\Contact;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
-use Unite\UnisysApi\Models\ModelWithAmount;
+use Unite\UnisysApi\Models\Model;
 
-class Expense extends ModelWithAmount implements HasMedia, HasCustomProperty, HasTagsInterface
+class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInterface
 {
     use LogsActivity;
     use HasTransactions;
