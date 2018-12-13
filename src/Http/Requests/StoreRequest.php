@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'type'                  => 'nullable|in:'.implode(',', Expense::getTypes()),
-            'name'                  => 'required|string|max:100',
+            'name'                  => 'required|string',
             'amount'                => ['required', new PriceAmount],
             'amount_without_vat'    => ['nullable', new PriceAmount],
             'number'                => 'nullable|string|max:100',
@@ -38,7 +38,7 @@ class StoreRequest extends FormRequest
             'date_due'              => 'nullable|date_format:Y-m-d',
             'variable_symbol'       => 'nullable|digits_between:0,10',
             'specific_symbol'       => 'nullable|digits_between:0,10',
-            'description'           => 'nullable|string|max:1000',
+            'description'           => 'nullable|string',
             'custom_properties'     => 'nullable|array',
         ];
     }
