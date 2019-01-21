@@ -31,7 +31,7 @@ class StoreRequest extends FormRequest
             'amount'                => ['required', new PriceAmount],
             'amount_without_vat'    => ['nullable', new PriceAmount],
             'number'                => 'nullable|string|max:100',
-            'supplier_id'           => 'nullable|integer|exists:contacts,id',
+            'supplier_id'           => 'required|integer|exists:contacts,id',
             'purchaser_id'          => 'required|integer|exists:contacts,id',
             'date_issue'            => 'nullable|date_format:Y-m-d',
             'date_supply'           => 'nullable|date_format:Y-m-d',

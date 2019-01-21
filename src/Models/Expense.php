@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Unite\Expenses\Events\ExpenseCreated;
+use Unite\Expenses\Events\ExpenseDeleting;
+use Unite\Expenses\Events\ExpenseUpdating;
 use Unite\Tags\HasTags;
 use Unite\Tags\HasTagsInterface;
 use Unite\Transactions\Traits\HasTransactions;
@@ -28,6 +31,12 @@ class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInter
         'type', 'name', 'number', 'supplier_id', 'purchaser_id', 'date_issue', 'date_supply', 'date_due',
         'variable_symbol', 'specific_symbol', 'description', 'custom_properties',
         'amount', 'amount_without_vat',
+    ];
+
+    protected $dispatchesEvents = [
+        'created'  => ExpenseCreated::class,
+        'deleting' => ExpenseDeleting::class,
+        'updating' => ExpenseUpdating::class,
     ];
 
     protected $casts = [
