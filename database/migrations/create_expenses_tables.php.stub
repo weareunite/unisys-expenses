@@ -10,6 +10,8 @@ class CreateExpensesTables extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('instance_id')->unsigned();
+            $table->foreign('instance_id')->references('id')->on('instances');
             $table->text('name');
             $table->string('type')->nullable();
             $table->string('number')->nullable();
