@@ -11,7 +11,7 @@ use Unite\Expenses\Http\Requests\UpdateRequest;
 use Unite\UnisysApi\Http\Controllers\HasExport;
 use Unite\UnisysApi\Modules\Tags\Http\Controllers\AttachDetachTags;
 use Unite\UnisysApi\Modules\Transactions\Http\Controllers\HandleTransaction;
-use Unite\UnisysApi\QueryBuilder\Contracts\QueryBuilder;
+use Unite\UnisysApi\QueryBuilder\QueryBuilder;
 use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
 /**
