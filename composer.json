@@ -18,15 +18,6 @@
       "role": "Developer"
     }
   ],
-//  "repositories": [
-//    {
-//      "type": "path",
-//      "url": "../unisys-api",
-//      "options": {
-//        "symlink": true
-//      }
-//    }
-//  ],
   "require": {
     "php": "^7.1",
     "weareunite/unisys-api": "^0.3",
