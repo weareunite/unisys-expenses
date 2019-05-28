@@ -3,10 +3,10 @@
 namespace Unite\Expenses\Http\Resources;
 
 use Illuminate\Database\Eloquent\Builder;
-use Unite\Contacts\Http\Resources\ContactResource;
 use Unite\Expenses\Models\Expense;
-use Unite\Tags\Http\Resources\TagResource;
 use Unite\UnisysApi\Http\Resources\Resource;
+use Unite\UnisysApi\Modules\Contacts\Http\Resources\ContactResource;
+use Unite\UnisysApi\Modules\Tags\Http\Resources\TagResource;
 
 class ExpenseResource extends Resource
 {

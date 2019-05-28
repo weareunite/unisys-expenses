@@ -1,6 +1,6 @@
 <?php
 
-namespace Unite\Transactions\Test;
+namespace Unite\Expenses\Test;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 

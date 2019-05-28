@@ -9,16 +9,16 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Unite\Expenses\Events\ExpenseCreated;
 use Unite\Expenses\Events\ExpenseDeleting;
 use Unite\Expenses\Events\ExpenseUpdating;
-use Unite\Tags\HasTags;
-use Unite\Tags\HasTagsInterface;
-use Unite\Transactions\Traits\HasTransactions;
-use Unite\Contacts\Models\Contact;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
-use Unite\UnisysApi\Models\HasInstance;
 use Unite\UnisysApi\Models\Model;
+use Unite\UnisysApi\Modules\Contacts\Models\Contact;
+use Unite\UnisysApi\Modules\Tags\Contracts\HasTags as HasTagsContract;
+use Unite\UnisysApi\Modules\Tags\HasTags;
+use Unite\UnisysApi\Modules\Transactions\Models\Traits\HasTransactions;
+use Unite\UnisysApi\Modules\Users\HasInstance;
 
-class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsInterface
+class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsContract
 {
     use LogsActivity;
     use HasTransactions;

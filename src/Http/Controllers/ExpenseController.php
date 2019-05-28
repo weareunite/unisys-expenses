@@ -2,18 +2,16 @@
 
 namespace Unite\Expenses\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\Expenses\ExpenseRepository;
 use Unite\Expenses\Http\Requests\StoreRequest;
 use Unite\Expenses\Http\Resources\ExpenseResource;
-use Unite\Tags\Http\Controllers\AttachDetachTags;
-use Unite\Transactions\Http\Controllers\HandleTransaction;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
-use Unite\UnisysApi\Http\Controllers\HandleUploads;
 use Unite\UnisysApi\Http\Controllers\HasExport;
-use Unite\UnisysApi\QueryBuilder\QueryBuilder;
+use Unite\UnisysApi\Modules\Tags\Http\Controllers\AttachDetachTags;
+use Unite\UnisysApi\Modules\Transactions\Http\Controllers\HandleTransaction;
+use Unite\UnisysApi\QueryBuilder\Contracts\QueryBuilder;
 use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
 /**
