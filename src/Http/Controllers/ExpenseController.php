@@ -9,6 +9,7 @@ use Unite\Expenses\Http\Resources\ExpenseResource;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Expenses\Http\Requests\UpdateRequest;
 use Unite\UnisysApi\Http\Controllers\HasExport;
+use Unite\UnisysApi\Modules\Media\Http\Controllers\HandleUploads;
 use Unite\UnisysApi\Modules\Tags\Http\Controllers\AttachDetachTags;
 use Unite\UnisysApi\Modules\Transactions\Http\Controllers\HandleTransaction;
 use Unite\UnisysApi\QueryBuilder\QueryBuilder;
