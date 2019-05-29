@@ -35,6 +35,7 @@ Route::group([
         Route::post('{id}/addFile',                 ['as' => 'uploadFile',              'uses' => 'ExpenseController@uploadFile']);
         Route::get('{id}/files',                    ['as' => 'getFiles',                'uses' => 'ExpenseController@getFiles']);
         Route::get('{id}/latestFile',               ['as' => 'getLatestFile',           'uses' => 'ExpenseController@getLatestFile']);
+        Route::post('{id}/removeFile/{media_id}',   ['as' => 'removeFile',              'uses' => 'ExpenseController@removeFile']);
 
         Route::get('export',                        ['as' => 'export',                  'uses' => 'ExpenseController@export']);
     });
