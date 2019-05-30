@@ -16,9 +16,7 @@ class ExpensesServiceProvider extends ServiceProvider
             Install::class,
         ]);
 
-        $this->app->booted(function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        });
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
 
         if (! class_exists('CreateExpensesTables')) {
             $timestamp = date('Y_m_d_His', time());
