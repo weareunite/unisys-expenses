@@ -46,11 +46,17 @@ class Expense extends Model implements HasMedia, HasCustomProperty, HasTagsContr
     ];
 
     const TYPE_DEFAULT = 'default';
+    const TYPE_INVOICE = 'invoice';
+    const TYPE_AGREEMENT = 'agreement';
+    const TYPE_RECEIPT = 'receipt';
 
     public static function getTypes(): array
     {
         return [
             self::TYPE_DEFAULT,
+            self::TYPE_INVOICE,
+            self::TYPE_AGREEMENT,
+            self::TYPE_RECEIPT,
         ];
     }
 
